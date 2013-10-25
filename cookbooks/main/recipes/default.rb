@@ -39,9 +39,20 @@ node.set['mysql'] = {
 # rbenv
 node.default['rbenv']['user_installs'] = [ { 'user' => 'vagrant' } ]
 
+# java
+node.set['java'] = {
+  install_flavor: "oracle",
+  jdk_version: 7,
+  oracle: {
+    accept_oracle_download_terms: true
+  }
+}
+
 # Heroku Toolbelt
 node.set['heroku-toolbelt']['standalone'] = false
 
+include_recipe 'java'
+include_recipe 'cookbook-elasticsearch'
 include_recipe 'postgresql::server'
 include_recipe 'mysql::server'
 include_recipe 'mysql::client'
