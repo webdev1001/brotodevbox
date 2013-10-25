@@ -4,21 +4,30 @@ include_recipe 'openssl'
 node.set['platform'] = 'ubuntu'
 
 # Postgres
-node.set['postgresql']['password']['postgres'] = 'password'
-node.set['postgresql']['pg_hba'] = [
-  {
-    type: 'local',
-    db: 'all',
-    user: 'postgres',
-    method: 'trust'
-  }
-]
+node.set['postgresql'] = {
+  version: "9.3",
+  enable_pgdg_apt: true,
+  contrib: {
+    packages: "postgresql-contrib-9.3"
+  },
+  password: {
+    postgres: ''
+  },
+  pg_hba: [
+    {
+      type: 'local',
+      db: 'all',
+      user: 'postgres',
+      method: 'trust'
+    }
+  ]
+}
 
 # Mysql
 node.set['mysql'] = {
-  server_root_password: 'password',
-  server_repl_password: 'password',
-  server_debian_password: 'password',
+  server_root_password: '',
+  server_repl_password: '',
+  server_debian_password: '',
   allow_remote_root: true,
   bind_address: '*',
 
