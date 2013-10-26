@@ -5,10 +5,10 @@ node.set['platform'] = 'ubuntu'
 
 # Postgres
 node.set['postgresql'] = {
-  version: "9.3",
+  version: '9.3',
   enable_pgdg_apt: true,
   contrib: {
-    packages: "postgresql-contrib-9.3"
+    packages: 'postgresql-contrib-9.3'
   },
   password: {
     postgres: ''
@@ -41,7 +41,7 @@ node.default['rbenv']['user_installs'] = [ { 'user' => 'vagrant' } ]
 
 # java
 node.set['java'] = {
-  install_flavor: "oracle",
+  install_flavor: 'oracle',
   jdk_version: 7,
   oracle: {
     accept_oracle_download_terms: true
