@@ -19,3 +19,9 @@
 [submodule "cookbooks/mysql"]
 	path = cookbooks/mysql
 	url = git@github.com:opscode-cookbooks/mysql.git
+[submodule "cookbooks/java"]
+	path = cookbooks/java
+	url = https://github.com/opscode-cookbooks/java.git
+[submodule "cookbooks/cookbook-elasticsearch"]
+	path = cookbooks/cookbook-elasticsearch
+	url = https://github.com/elasticsearch/cookbook-elasticsearch.git
