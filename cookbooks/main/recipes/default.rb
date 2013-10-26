@@ -50,7 +50,6 @@ node.set['java'] = {
 # Heroku Toolbelt
 node.set['heroku-toolbelt']['standalone'] = false
 
-include_recipe 'elasticsearch'
 include_recipe 'postgresql::server'
 include_recipe 'mysql::server'
 include_recipe 'mysql::client'
@@ -63,12 +62,14 @@ include_recipe 'heroku-toolbelt'
   build-essential git-core subversion curl autoconf zlib1g-dev libssl-dev
   libreadline6-dev libxml2-dev libyaml-dev libapreq2-dev vim tmux memcached
   imagemagick libmagickwand-dev libxslt1-dev libxml2-dev sphinxsearch
-  libsqlite3-dev
+  libsqlite3-dev openjdk-7-jre-headless
 ).each do |package_name|
   package package_name do
     action :install
   end
 end
+
+include_recipe 'elasticsearch'
 
 # Dotfiles
 bash 'clone dotfiles repo' do
