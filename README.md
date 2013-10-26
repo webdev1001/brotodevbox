@@ -9,6 +9,8 @@ This project automates the setup of a development environment for Ruby on Rails.
 * [VirtualBox](https://www.virtualbox.org)
 * [Vagrant](http://vagrantup.com)
 
+**I recommend you to download the tarball available in the dist folder, the file includes this repo with all git submodules, so your host machine won't need even `git`**
+
 ## How To Build The Virtual Machine
 
 Building the virtual machine is this easy:
@@ -22,7 +24,7 @@ That's it.
 If the base box is not present that command fetches it first. The setup itself takes about 3 minutes in my MacBook Air. After the installation has finished, you can access the virtual machine with
 
     host $ vagrant ssh
-    Welcome to Ubuntu 12.04.3 LTS (GNU/Linux 3.2.0-23-generic x86_64)
+    Welcome to Ubuntu 13.10 LTS (GNU/Linux 3.11.0-12-generic x86_64)
     ...
     vagrant@brotodevbox:~$
 
@@ -36,6 +38,8 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 - ruby\_build
 - PostgreSQL
 - MySQL
+- Open JDK 7 Headless
+- Elasticsearch
 - Heroku Toolbelt
 - System dependencies for nokogiri, ruby, rmagick, sqlite3, mysql, mysql2, and pg
 - Memcached

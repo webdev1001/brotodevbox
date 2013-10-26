@@ -82,7 +82,7 @@ end
 bash 'install dotfiles' do
   user 'vagrant'
   cwd '/home/vagrant/code/dotfiles'
-  code 'rm /home/vagrant/.bashrc && HOME=/home/vagrant sh /home/vagrant/code/dotfiles/install.sh'
+  code 'rm -rf /home/vagrant/.bashrc /home/vagrant/.vim && HOME=/home/vagrant sh /home/vagrant/code/dotfiles/install.sh'
   not_if { ::File.exists?('/home/vagrant/.vimrc') }
 end
 
