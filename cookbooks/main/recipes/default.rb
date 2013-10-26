@@ -6,7 +6,6 @@ node.set['platform'] = 'ubuntu'
 # Postgres
 node.set['postgresql'] = {
   version: '9.3',
-  enable_pgdg_apt: true,
   contrib: {
     packages: 'postgresql-contrib-9.3'
   },
@@ -51,8 +50,6 @@ node.set['java'] = {
 # Heroku Toolbelt
 node.set['heroku-toolbelt']['standalone'] = false
 
-include_recipe 'java'
-include_recipe 'ark'
 include_recipe 'elasticsearch'
 include_recipe 'postgresql::server'
 include_recipe 'mysql::server'
