@@ -34,7 +34,9 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 - Ruby 1.9.3 [Ubuntu package]
 - rbenv
 - ruby\_build
-- Postgresql
+- PostgreSQL
+- MySQL
+- Heroku Toolbelt
 - System dependencies for nokogiri, ruby, rmagick, sqlite3, mysql, mysql2, and pg
 - Memcached
 - [dotfiles](https://github.com/brennovich/dotfiles)
