@@ -2,12 +2,12 @@
 
 ## Introduction
 
-This project automates the setup of a development environment for Ruby on Rails. This is the easiest way to build a box with everything ready to start hacking, all in an isolated virtual machine.
+This project automates the setup of a development environment for Ruby ecosystem. This is the easiest way to build a box with everything ready to start hacking, all in an isolated virtual machine.
 
 ## Requirements
 
 * [VMWare Fusion](https://my.vmware.com/web/vmware/info/slug/desktop_end_user_computing/vmware_fusion/6_0)
-  * If can use [VirtualBox](https://www.virtualbox.org) if you want to, to do that you will need to change the `config.vm.box` option of your `Vagrantfile`
+  * You can use [VirtualBox](https://www.virtualbox.org) if you want to, to do that you will need to change the `config.vm.box` option of your `Vagrantfile`
 * [Vagrant](http://vagrantup.com)
 
 **I recommend you to download the tarball available in the dist folder, the file includes this repo with all git submodules, so your host machine won't need even `git`**
