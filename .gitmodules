@@ -19,3 +19,21 @@
 [submodule "cookbooks/mysql"]
 	path = cookbooks/mysql
 	url = git@github.com:opscode-cookbooks/mysql.git
+[submodule "cookbooks/smf"]
+	path = cookbooks/smf
+	url = git@github.com:livinginthepast/smf.git
+[submodule "cookbooks/rbac"]
+	path = cookbooks/rbac
+	url = git@github.com:livinginthepast/rbac.git
+[submodule "cookbooks/yum-mysql-community"]
+	path = cookbooks/yum-mysql-community
+	url = git@github.com:chef-cookbooks/yum-mysql-community.git
+[submodule "cookbooks/yum"]
+	path = cookbooks/yum
+	url = git@github.com:chef-cookbooks/yum.git
+[submodule "cookbooks/chef-sugar"]
+	path = cookbooks/chef-sugar
+	url = git@github.com:sethvargo/chef-sugar.git
+[submodule "cookbooks/build-essential"]
+	path = cookbooks/build-essential
+	url = git@github.com:opscode-cookbooks/build-essential.git

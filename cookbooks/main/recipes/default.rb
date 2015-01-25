@@ -5,13 +5,11 @@ node.set['platform'] = 'ubuntu'
 
 # Postgres
 node.set['postgresql'] = {
-  version: '9.3',
-  contrib: {
-    packages: 'postgresql-contrib-9.3'
-  },
+  version: '9.4',
   password: {
     postgres: ''
   },
+  dir: '/var/lib/postgresql/9.4/main',
   pg_hba: [
     {
       type: 'local',
@@ -20,19 +18,6 @@ node.set['postgresql'] = {
       method: 'trust'
     }
   ]
-}
-
-# Mysql
-node.set['mysql'] = {
-  server_root_password: '',
-  server_repl_password: '',
-  server_debian_password: '',
-  allow_remote_root: true,
-  bind_address: '*',
-
-  client: {
-    packages: ['libmysqlclient-dev']
-  }
 }
 
 # rbenv
@@ -45,18 +30,24 @@ node.set['ruby_build']['upgrade'] = true
 node.set['heroku-toolbelt']['standalone'] = false
 
 include_recipe 'postgresql::server'
-include_recipe 'mysql::server'
-include_recipe 'mysql::client'
 include_recipe 'rbenv::user_install'
 include_recipe 'ruby_build'
 include_recipe 'heroku-toolbelt'
+
+mysql_service 'default' do
+  port '3306'
+  version '5.6'
+  initial_root_password ''
+  bind_address '*'
+  action [:create, :start]
+end
 
 # Packages
 %w(
   build-essential git-core subversion curl autoconf zlib1g-dev libssl-dev
   libreadline6-dev libxml2-dev libyaml-dev libapreq2-dev vim tmux memcached
-  imagemagick libmagickwand-dev libxslt1-dev libxml2-dev sphinxsearch
-  libsqlite3-dev openjdk-7-jre-headless
+  imagemagick libmagickwand-dev libxslt1-dev libxml2-dev libsqlite3-dev
+  openjdk-8-jre-headless nfs-common libmysqlclient-dev
 ).each do |package_name|
   package package_name do
     action :install
@@ -70,7 +61,7 @@ bash 'clone dotfiles repo' do
   user 'vagrant'
   cwd '/home/vagrant/code'
   code 'git clone https://github.com/brennovich/dotfiles.git /home/vagrant/code/dotfiles'
-  not_if { ::File.exists?('/home/vagrant/code') }
+  not_if { ::File.exists?('/home/vagrant/code/dotfiles') }
 end
 
 bash 'install dotfiles' do
