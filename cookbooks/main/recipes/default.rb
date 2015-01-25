@@ -47,7 +47,7 @@ end
   build-essential git-core subversion curl autoconf zlib1g-dev libssl-dev
   libreadline6-dev libxml2-dev libyaml-dev libapreq2-dev vim tmux memcached
   imagemagick libmagickwand-dev libxslt1-dev libxml2-dev libsqlite3-dev
-  openjdk-8-jre-headless nfs-common libmysqlclient-dev
+  openjdk-8-jre-headless nfs-common libmysqlclient-dev libpq-dev libffi-dev
 ).each do |package_name|
   package package_name do
     action :install
