@@ -7,8 +7,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.host_name = 'brotodevbox'
 
   config.vm.provider 'virtualbox' do |v|
-    v.memory = 1024
+    v.memory = 2048
     v.cpus = 4
+
+    v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
   end
 
   config.ssh.forward_agent = true
