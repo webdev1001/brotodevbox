@@ -6,6 +6,7 @@ This project automates the setup of a development environment for Ruby ecosystem
 
 ## Requirements
 
+* [VMWare Fusion](http://www.vmware.com/products/fusion)
 * [VirtualBox](https://www.virtualbox.org)
 * [Vagrant](http://vagrantup.com)
 
@@ -17,16 +18,16 @@ Building the virtual machine is this easy:
 
     host $ tar -xvzf brotodevbox-2.0.0.tar.gz
     host $ cd brotodevbox
-    host $ vagrant up [--provider vmware_fusion]
+    host $ vagrant up
 
 That's it.
 
 If the base box is not present that command fetches it first. The setup itself takes about 6 minutes in my MacBook Retina 13". After the installation has finished, you can access the virtual machine with
 
     host $ vagrant ssh
-    Welcome to Ubuntu 14.10 (GNU/Linux 3.16.0-29-generic x86_64)
+    Welcome to Ubuntu 14.04 (GNU/Linux 3.16.0-29-generic x86_64)
     ...
-    using system at ~ 
+    using system at ~
     $
 
 Port 3000 in the host computer is forwarded to port 3000 in the virtual machine. Thus, applications running in the virtual machine can be accessed via localhost:3000 in the host computer.
@@ -37,9 +38,9 @@ Port 3000 in the host computer is forwarded to port 3000 in the virtual machine.
 - Ruby 1.9.3 [Ubuntu package]
 - rbenv
 - ruby\_build
-- PostgreSQL 9.4
+- PostgreSQL 9.3
 - MySQL 5.6
-- Open JDK 8 Headless
+- Open JDK 7 Headless
 - Elasticsearch
 - Heroku Toolbelt
 - System dependencies for nokogiri, ruby, rmagick, sqlite3, mysql, mysql2, and pg
@@ -55,13 +56,13 @@ The recommended workflow is
 
 Vagrant is configured to mount your ~/code folder within the virtual machine:
 
-    using system at ~ 
+    using system at ~
     $ ls
     code
 
 This workflow is convenient because in the host computer one normally has his editor of choice fine-tuned, and other graphic tools configured.
 
-Probably you want to put your SSH keys into a folder `.shh` inside the shared folder `code`. The vangrant and the dotfiles will automatically forward SSH sessions and add a new identity, so you be able to push to Github with your existing key ;)
+Probably you want to put your SSH keys into a folder `.ssh` inside the shared folder `code`. The vangrant and the dotfiles will automatically forward SSH sessions and add a new identity, so you be able to push to Github with your existing key ;)
 
 ## Virtual Machine Management
 

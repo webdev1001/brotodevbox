@@ -9,8 +9,8 @@ apt_repository 'neovim' do
 end
 
 node.set['postgresql'] = {
-  version: '9.4',
-  dir: '/var/lib/postgresql/9.4/main',
+  version: '9.3',
+  dir: '/var/lib/postgresql/9.3/main',
   password: {
     postgres: ''
   }
@@ -50,7 +50,7 @@ end
   imagemagick libmagickwand-dev libxslt1-dev libxml2-dev libsqlite3-dev
   openjdk-7-jre-headless nfs-common libmysqlclient-dev libpq-dev libffi-dev
   libcurl4-openssl-dev libreadline-dev sqlite3 ack-grep nodejs exuberant-ctags
-  neovim redis-server python-pip python-dev
+  vim neovim redis-server python-pip python-dev
 ).each do |package_name|
   package package_name do
     action :install

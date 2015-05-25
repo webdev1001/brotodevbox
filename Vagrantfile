@@ -2,16 +2,14 @@ VAGRANTFILE_API_VERSION = '2'
 SYNCED_FOLDER = 'code'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'utopic64_virtualbox'
-  config.vm.box_url = 'http://brennovich.s3.amazonaws.com/utopic64_virtualbox.box'
+  config.vm.box = 'phusion/ubuntu-14.04-amd64'
   config.vm.host_name = 'brotodevbox'
 
-  config.vm.provider 'virtualbox' do |v|
-    v.memory = 2048
+  config.vm.provider :vmware do |v|
+    v.memory = 2512
     v.cpus = 4
+    v.gui = false
   end
-
-  config.ssh.forward_x11 = true
 
   config.vm.network :private_network, ip: '192.168.33.10'
 
