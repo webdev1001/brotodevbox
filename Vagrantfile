@@ -5,9 +5,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'phusion/ubuntu-14.04-amd64'
   config.vm.host_name = 'brotodevbox'
 
-  config.vm.provider :vmware do |v|
-    v.memory = 2512
-    v.cpus = 4
+  config.vm.provider :vmware_fusion do |v|
+    v.vmx['memsize'] = 3072
+    v.vmx['numvcpus'] = 4
+
     v.gui = false
   end
 

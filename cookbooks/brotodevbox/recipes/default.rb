@@ -3,6 +3,9 @@ include_recipe 'openssl'
 
 node.set['platform'] = 'ubuntu'
 
+node.set['apt']['unattended_upgrades']['enable'] = true
+node.set['apt']['unattended_upgrades']['auto_fix_interrupted_dpkg'] = true
+
 apt_repository 'neovim' do
   uri 'ppa:neovim-ppa/unstable'
   distribution node['lsb']['codename']
@@ -25,15 +28,17 @@ node.set['postgresql']['pg_hba'] = [
   }
 ]
 
+include_recipe 'postgresql::server'
+
 node.default['rbenv']['user_installs'] = [ { 'user' => 'vagrant' } ]
 
 node.set['ruby_build']['upgrade'] = true
 
-node.set['heroku-toolbelt']['standalone'] = false
-
-include_recipe 'postgresql::server'
 include_recipe 'rbenv::user_install'
 include_recipe 'ruby_build'
+
+node.set['heroku-toolbelt']['standalone'] = false
+
 include_recipe 'heroku-toolbelt'
 
 mysql_service 'default' do
@@ -50,7 +55,7 @@ end
   imagemagick libmagickwand-dev libxslt1-dev libxml2-dev libsqlite3-dev
   openjdk-7-jre-headless nfs-common libmysqlclient-dev libpq-dev libffi-dev
   libcurl4-openssl-dev libreadline-dev sqlite3 ack-grep nodejs exuberant-ctags
-  vim neovim redis-server python-pip python-dev
+  vim neovim redis-server python-pip python-dev ack-grep
 ).each do |package_name|
   package package_name do
     action :install
@@ -71,14 +76,12 @@ bash 'setup neobundle' do
   user 'vagrant'
   cwd '/home/vagrant/'
   code 'rm -rf /home/vagrant/.vim/bundle/neobundle.vim && git clone git://github.com/Shougo/neobundle.vim /home/vagrant/.vim/bundle/neobundle.vim'
-  not_if { ::Dir.exist?('/home/vagrant/.vim/bundle/neobundle.vim') }
 end
 
 bash 'install dotfiles' do
   user 'vagrant'
   cwd '/home/vagrant/code/dotfiles'
   code 'rm -rf /home/vagrant/.bashrc /home/vagrant/.vim && HOME=/home/vagrant sh /home/vagrant/code/dotfiles/install.sh'
-  not_if { ::File.exist?('/home/vagrant/.vimrc') }
 end
 
 bash 'install neovim modules dependencies' do
