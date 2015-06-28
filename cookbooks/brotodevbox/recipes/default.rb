@@ -12,42 +12,42 @@ apt_repository 'neovim' do
 end
 
 node.set['postgresql'] = {
-  version: '9.3',
-  dir: '/var/lib/postgresql/9.3/main',
+  version: '9.4',
+  dir: '/var/lib/postgresql/9.4/main',
   password: {
     postgres: ''
-  }
+  },
+  pg_hba: [
+    {
+      comment: '# Allow all local connections for `postgres`',
+      type: 'local',
+      db: 'all',
+      user: 'postgres',
+      addr: nil,
+      method: 'trust'
+    }
+  ]
 }
-
-node.set['postgresql']['pg_hba'] = [
-  {
-    type: 'local',
-    db: 'all',
-    user: 'postgres',
-    method: 'trust'
-  }
-]
 
 include_recipe 'postgresql::server'
 
 node.default['rbenv']['user_installs'] = [ { 'user' => 'vagrant' } ]
-
 node.set['ruby_build']['upgrade'] = true
 
 include_recipe 'rbenv::user_install'
 include_recipe 'ruby_build'
 
-node.set['heroku-toolbelt']['standalone'] = false
+# Stuff that isn't being used
+# node.set['heroku-toolbelt']['standalone'] = false
+# include_recipe 'heroku-toolbelt'
 
-include_recipe 'heroku-toolbelt'
-
-mysql_service 'default' do
-  port '3306'
-  version '5.6'
-  initial_root_password ''
-  bind_address '*'
-  action [:create, :start]
-end
+# mysql_service 'default' do
+#   port '3306'
+#   version '5.6'
+#   initial_root_password ''
+#   bind_address '*'
+#   action [:create, :start]
+# end
 
 %w(
   build-essential git-core subversion curl autoconf zlib1g-dev libssl-dev
@@ -55,7 +55,7 @@ end
   imagemagick libmagickwand-dev libxslt1-dev libxml2-dev libsqlite3-dev
   openjdk-7-jre-headless nfs-common libmysqlclient-dev libpq-dev libffi-dev
   libcurl4-openssl-dev libreadline-dev sqlite3 ack-grep nodejs exuberant-ctags
-  vim neovim redis-server python-pip python-dev ack-grep
+  neovim redis-server python-pip python-dev
 ).each do |package_name|
   package package_name do
     action :install
@@ -68,14 +68,8 @@ include_recipe 'elasticsearch'
 bash 'clone dotfiles repo' do
   user 'vagrant'
   cwd '/home/vagrant/code'
-  code 'git clone https://github.com/brennovich/dotfiles.git /home/vagrant/code/dotfiles'
+  code 'git clone --recursive https://github.com/brennovich/dotfiles.git /home/vagrant/code/dotfiles'
   not_if { ::Dir.exist?('/home/vagrant/code/dotfiles') }
-end
-
-bash 'setup neobundle' do
-  user 'vagrant'
-  cwd '/home/vagrant/'
-  code 'rm -rf /home/vagrant/.vim/bundle/neobundle.vim && git clone git://github.com/Shougo/neobundle.vim /home/vagrant/.vim/bundle/neobundle.vim'
 end
 
 bash 'install dotfiles' do

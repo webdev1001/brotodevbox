@@ -2,8 +2,7 @@ VAGRANTFILE_API_VERSION = '2'
 SYNCED_FOLDER = 'code'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'phusion/ubuntu-14.04-amd64'
-  config.vm.host_name = 'brotodevbox'
+  config.vm.box = 'boxcutter/ubuntu1504'
 
   config.vm.provider :vmware_fusion do |v|
     v.vmx['memsize'] = 3072
