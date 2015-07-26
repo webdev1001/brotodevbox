@@ -55,7 +55,7 @@ include_recipe 'ruby_build'
   imagemagick libmagickwand-dev libxslt1-dev libxml2-dev libsqlite3-dev
   openjdk-7-jre-headless nfs-common libmysqlclient-dev libpq-dev libffi-dev
   libcurl4-openssl-dev libreadline-dev sqlite3 ack-grep nodejs exuberant-ctags
-  neovim redis-server python-pip python-dev
+  neovim redis-server python-pip python-dev npm
 ).each do |package_name|
   package package_name do
     action :install
