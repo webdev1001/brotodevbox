@@ -1,3 +1,6 @@
+# Enable VMWare Tech Preview
+VAGRANT_VMWARE_FUSION_EXP = '1'
+
 VAGRANTFILE_API_VERSION = '2'
 SYNCED_FOLDER = 'code'
 
